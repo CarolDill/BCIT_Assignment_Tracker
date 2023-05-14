@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Header assignmentList={assignmentList} setAssignmentList={setAssignmentList}/>
-      <Assignments assignmentList={assignmentList}/>
+      <Assignments assignmentList={assignmentList} setAssignmentList={setAssignmentList}/>
     </>
   );
 }

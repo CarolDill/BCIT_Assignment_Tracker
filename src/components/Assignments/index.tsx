@@ -3,9 +3,13 @@ import styles from "./assignments.module.css";
 
 interface Props {
   assignmentList: string[],
+  setAssignmentList: React.Dispatch<React.SetStateAction<string[]>>
 }
 
-export function Assignments({ assignmentList }: Props) {
+export function Assignments({ assignmentList, setAssignmentList }: Props) {
+
+
+
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
@@ -22,7 +26,7 @@ export function Assignments({ assignmentList }: Props) {
 
       {assignmentList.map((assignment) =>(
         <div className={styles.list}>
-          <Assignment assignment={assignment}/>
+          <Assignment assignment={assignment} assignmentList={assignmentList} setAssignmentList={setAssignmentList}/>
       </div>
       ))}
     </section>
