@@ -1,14 +1,15 @@
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
 
+import { useState } from "react";
+
 interface Props {
   assignmentList: string[],
   setAssignmentList: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 export function Assignments({ assignmentList, setAssignmentList }: Props) {
-
-
+  const [completedAssignmentsNumber, setCompletedAssignmentsNumber] = useState(0);
 
   return (
     <section className={styles.assignments}>
@@ -20,13 +21,13 @@ export function Assignments({ assignmentList, setAssignmentList }: Props) {
 
         <div>
           <p className={styles.textPurple}>Completed Assignments</p>
-          <span>1 of {assignmentList.length}</span>
+          <span>{completedAssignmentsNumber} of {assignmentList.length}</span>
         </div>
       </header>
 
       {assignmentList.map((assignment) =>(
         <div className={styles.list}>
-          <Assignment assignment={assignment} assignmentList={assignmentList} setAssignmentList={setAssignmentList}/>
+          <Assignment assignment={assignment} assignmentList={assignmentList} setAssignmentList={setAssignmentList} completedAssignmentsNumber={completedAssignmentsNumber} setCompletedAssignmentsNumber={setCompletedAssignmentsNumber}/>
       </div>
       ))}
     </section>

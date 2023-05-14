@@ -47,3 +47,7 @@ p.textCompleted {
   border: none;
   color: #808080;
 }
+
+.none{
+  display: none;
+}
