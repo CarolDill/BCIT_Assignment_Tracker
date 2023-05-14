@@ -11,12 +11,12 @@ export function Assignments({ assignmentList }: Props) {
       <header className={styles.header}>
         <div>
           <p>Created Assignments</p>
-          <span>1</span>
+          <span>{assignmentList.length}</span>
         </div>
 
         <div>
           <p className={styles.textPurple}>Completed Assignments</p>
-          <span>1 of 1</span>
+          <span>1 of {assignmentList.length}</span>
         </div>
       </header>
 
