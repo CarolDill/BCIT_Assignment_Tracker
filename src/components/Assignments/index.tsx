@@ -1,7 +1,11 @@
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
 
-export function Assignments() {
+interface Props {
+  assignmentList: string[],
+}
+
+export function Assignments({ assignmentList }: Props) {
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
@@ -16,9 +20,11 @@ export function Assignments() {
         </div>
       </header>
 
-      <div className={styles.list}>
-        <Assignment />
+      {assignmentList.map((assignment) =>(
+        <div className={styles.list}>
+          <Assignment assignment={assignment}/>
       </div>
+      ))}
     </section>
   );
 }
