@@ -3,9 +3,14 @@ import styles from "./assignments.module.css";
 
 import { useState } from "react";
 
+interface Assignment{
+  name: string,
+  completed: boolean
+}
+
 interface Props {
-  assignmentList: string[],
-  setAssignmentList: React.Dispatch<React.SetStateAction<string[]>>
+  assignmentList: Assignment[],
+  setAssignmentList: React.Dispatch<React.SetStateAction<Assignment[]>>
 }
 
 export function Assignments({ assignmentList, setAssignmentList }: Props) {

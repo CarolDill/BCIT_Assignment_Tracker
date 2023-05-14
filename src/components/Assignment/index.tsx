@@ -3,10 +3,15 @@ import { TbTrash, TbCircleCheckFilled } from "react-icons/tb";
 
 import { useState } from "react";
 
+interface Assignment{
+  name: string,
+  completed: boolean
+}
+
 interface Props{
-  assignment: string,
-  assignmentList: string[],
-  setAssignmentList: React.Dispatch<React.SetStateAction<string[]>>,
+  assignment: Assignment,
+  assignmentList: Assignment[],
+  setAssignmentList: React.Dispatch<React.SetStateAction<Assignment[]>>,
   completedAssignmentsNumber : number,
   setCompletedAssignmentsNumber: React.Dispatch<React.SetStateAction<number>>
 }
@@ -16,11 +21,11 @@ export function Assignment( { assignment, assignmentList, setAssignmentList, com
   console.log(complete);
 
   const handleDeleteClick = () => {
-    setAssignmentList(assignmentList.filter(assignmenttodelete => assignmenttodelete != assignment))
+    setAssignmentList(assignmentList.filter((assignmenttodelete) => assignmenttodelete.name != assignment.name))
   };
 
   const handleComplete = () => {
-    if (complete == true) {
+    if (complete) {
       setComplete(false);
       setCompletedAssignmentsNumber(completedAssignmentsNumber - 1);
     } else {
@@ -37,7 +42,7 @@ export function Assignment( { assignment, assignmentList, setAssignmentList, com
         </div>
       </button>
 
-      <p className={complete? styles.textCompleted : ''}>{ assignment }</p>
+      <p className={complete? styles.textCompleted : ''}>{ assignment.name }</p>
 
       <button className={styles.deleteButton} onClick={handleDeleteClick}>
         <TbTrash size={20} />

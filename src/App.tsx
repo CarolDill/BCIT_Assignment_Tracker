@@ -2,9 +2,14 @@ import { Header } from "./components/Header";
 import { Assignments } from "./components/Assignments";
 
 import { useState } from "react";
+interface Assignment{
+  name: string,
+  completed: boolean
+}
+
 
 function App() {
-  const [assignmentList, setAssignmentList] = useState<string[]>([]);
+  const [assignmentList, setAssignmentList] = useState<Assignment[]>([]);
   
   return (
     <>
