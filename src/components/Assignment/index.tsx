@@ -1,7 +1,6 @@
 import styles from "./assignment.module.css";
 import { TbTrash, TbCircleCheckFilled } from "react-icons/tb";
 
-import { useState } from "react";
 
 interface Assignment{
   id: number,
@@ -13,37 +12,39 @@ interface Props{
   assignment: Assignment,
   assignmentList: Assignment[],
   setAssignmentList: React.Dispatch<React.SetStateAction<Assignment[]>>,
-  completedAssignmentsNumber : number,
-  setCompletedAssignmentsNumber: React.Dispatch<React.SetStateAction<number>>
 }
 
-export function Assignment( { assignment, assignmentList, setAssignmentList, completedAssignmentsNumber, setCompletedAssignmentsNumber }: Props) {
-  const [complete, setComplete] = useState(false);
-  // console.log(complete);
+export function Assignment( { assignment, assignmentList, setAssignmentList }: Props) {
 
   const handleDeleteClick = () => {
-    setAssignmentList(assignmentList.filter((assignmenttodelete) => assignmenttodelete.name != assignment.name))
+    setAssignmentList(assignmentList.filter((assignmenttodelete) => assignmenttodelete.id != assignment.id))
   };
 
   const handleComplete = () => {
-    if (complete) {
-      setComplete(false);
-      setCompletedAssignmentsNumber(completedAssignmentsNumber - 1);
-    } else {
-      setComplete(true);
-      setCompletedAssignmentsNumber(completedAssignmentsNumber + 1);
-    }
+    setAssignmentList(
+      assignmentList.map(item => {
+        if (item.id === assignment.id) {
+          if(item.completed){
+            return {...item, completed: false}
+          } else {
+            return {...item, completed: true}
+          }
+        }
+        else {
+          return item
+        }
+    }))
   }
 
   return (
     <div className={styles.assignment}>
       <button className={styles.checkContainer} onClick={handleComplete}>
-        <div className={complete? styles.checkContainer : ''} >
-          <TbCircleCheckFilled size={20} className={complete? styles.checkContainer : styles.none}/>
+        <div className={assignment.completed ? styles.checkContainer : ''} >
+          <TbCircleCheckFilled size={20} className={assignment.completed? styles.checkContainer : styles.none}/>
         </div>
       </button>
 
-      <p className={complete? styles.textCompleted : ''}>{ assignment.name }</p>
+      <p className={assignment.completed ? styles.textCompleted : ''}>{ assignment.name }</p>
 
       <button className={styles.deleteButton} onClick={handleDeleteClick}>
         <TbTrash size={20} />

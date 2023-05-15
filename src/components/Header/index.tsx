@@ -49,9 +49,6 @@ export function Header({assignmentList, setAssignmentList, assignmentName, setAs
     setAssignmentName('');
   }
 
-  console.log(assignmentList);
-  
-
   return (
     <header className={styles.header} onSubmit={buttonHandler}>
       {/* This is simply to show you how to use helper functions */}
