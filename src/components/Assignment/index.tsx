@@ -4,6 +4,7 @@ import { TbTrash, TbCircleCheckFilled } from "react-icons/tb";
 import { useState } from "react";
 
 interface Assignment{
+  id: number,
   name: string,
   completed: boolean
 }
@@ -18,7 +19,7 @@ interface Props{
 
 export function Assignment( { assignment, assignmentList, setAssignmentList, completedAssignmentsNumber, setCompletedAssignmentsNumber }: Props) {
   const [complete, setComplete] = useState(false);
-  console.log(complete);
+  // console.log(complete);
 
   const handleDeleteClick = () => {
     setAssignmentList(assignmentList.filter((assignmenttodelete) => assignmenttodelete.name != assignment.name))

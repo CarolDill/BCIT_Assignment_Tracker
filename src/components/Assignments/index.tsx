@@ -4,6 +4,7 @@ import styles from "./assignments.module.css";
 import { useState } from "react";
 
 interface Assignment{
+  id: number,
   name: string,
   completed: boolean
 }
