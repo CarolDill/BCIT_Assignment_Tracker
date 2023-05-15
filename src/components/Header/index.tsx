@@ -23,16 +23,10 @@ export function Header({assignmentList, setAssignmentList, assignmentName, setAs
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setAssignmentName(e.target.value);
-    if(!/\S/.test(e.target.value)){
+    if(/^\s*$/.test(e.target.value)){
       setDisableCreate(true);
     } else {
-      e.preventDefault();
-      // setCurrentAssignment({
-      //   id: Date.now,
-      //   name: e.target.value,
-      //   completed: false});
-      //   console.log(currentAssignment);
-        
+      e.preventDefault();      
       setDisableCreate(false);
     }
   }
@@ -47,6 +41,7 @@ export function Header({assignmentList, setAssignmentList, assignmentName, setAs
     }])
 
     setAssignmentName('');
+    setDisableCreate(true);
   }
 
   return (
