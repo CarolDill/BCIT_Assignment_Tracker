@@ -53,13 +53,16 @@ p.textCompleted {
 }
 
 .dueNDays {
+  margin-left: 5px;
   padding: 5px 10px;
   border-radius: 15px;
   background-color: #808080;
 }
 
 .dueTomorrow {
+  margin-left: 5px;
   padding: 5px 10px;
   border-radius: 15px;
-  background-color: red;
+  background-color: #EE0D0D;
 }
+

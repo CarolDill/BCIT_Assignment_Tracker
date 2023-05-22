@@ -4,23 +4,24 @@ import styles from "./header.module.css";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { uppercase, capitalizeFirstLetter } from "../../helpers/stringHelpers";
 
-import AssignmentInterface from "../../interfaces/assignments";
+// import AssignmentInterface from "../../interfaces/assignments";
 
 import { useState } from "react";
 
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
+
+import { useAssignmentStore } from "../../store";
 interface Props{
-  assignmentList: AssignmentInterface[],
-  setAssignmentList: Dispatch<SetStateAction<AssignmentInterface[]>>,
-  assignmentName: string,
-  setAssignmentName: Dispatch<SetStateAction<string>>,
+  // assignmentName: string,
+  // setAssignmentName: Dispatch<SetStateAction<string>>,
   selected: Date | undefined,
   setSelected: Dispatch<SetStateAction<Date | undefined>>
 }
 
-export function Header({assignmentList, setAssignmentList, assignmentName, setAssignmentName, selected, setSelected}: Props) {
+export function Header({ selected, setSelected}: Props) {
 
+  const { setAssignments, assignmentName, setAssignmentName } = useAssignmentStore();
   const [disableCreate, setDisableCreate] = useState(true);
 
   function checkInputs() {
@@ -39,16 +40,15 @@ export function Header({assignmentList, setAssignmentList, assignmentName, setAs
 
   function buttonHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(selected);
-    if(!selected || selected == undefined) {
+    if(!selected || selected < new Date()) {
       alert("Please select a valid due date!")
     } else {
-      setAssignmentList([...assignmentList, {
+      setAssignments({
         id: Date.now(),
         name: assignmentName,
         completed: false,
         dueDate: selected
-      }])
+      })
   
       setAssignmentName('');
       setDisableCreate(true);

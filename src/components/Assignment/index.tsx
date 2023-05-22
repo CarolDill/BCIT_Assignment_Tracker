@@ -1,26 +1,29 @@
 import styles from "./assignment.module.css";
 import { TbTrash, TbCircleCheckFilled } from "react-icons/tb";
-// import React from 'react';
+import 'react-day-picker/dist/style.css';
+
 import AssignmentInterface from "../../interfaces/assignments";
 import daysDifference from "../../helpers/daysHelpers";
 
-import 'react-day-picker/dist/style.css';
+import { useAssignmentStore } from "../../store";
 
-interface Props{
-  assignment: AssignmentInterface,
-  assignmentList: AssignmentInterface[],
-  setAssignmentList: React.Dispatch<React.SetStateAction<AssignmentInterface[]>>,
-}
+// interface Props{
+  // assignment: AssignmentInterface,
+  // assignmentList: AssignmentInterface[],
+  // setAssignmentList: React.Dispatch<React.SetStateAction<AssignmentInterface[]>>,
+// }
 
-export function Assignment( { assignment, assignmentList, setAssignmentList }: Props) {
+export function Assignment( assignment: AssignmentInterface) {
+
+  const { assignments, updateAssignmentList } = useAssignmentStore();
 
   const handleDeleteClick = () => {
-    setAssignmentList(assignmentList.filter((assignmenttodelete) => assignmenttodelete.id != assignment.id))
+    updateAssignmentList(assignments.filter((assignmenttodelete) => assignmenttodelete.id != assignment.id))
   };
 
   const handleComplete = () => {
-    setAssignmentList(
-      assignmentList.map(item => {
+    updateAssignmentList(
+      assignments.map(item => {
         if (item.id === assignment.id) {
           if(item.completed){
             return {...item, completed: false}
@@ -53,7 +56,7 @@ export function Assignment( { assignment, assignmentList, setAssignmentList }: P
         </div>
       </button>
 
-      <p className={assignment.completed ? styles.textCompleted : ''} key={assignment.id}>{ assignment.name } <span className={daysDifference(assignment.dueDate) == 1 ? styles.dueTomorrow : styles.dueNDays}>{formatDate(assignment.dueDate)}</span> </p>
+      <p className={assignment.completed ? styles.textCompleted : ''} >{ assignment.name } <span className={daysDifference(assignment.dueDate) == 1 ? styles.dueTomorrow : styles.dueNDays}>{formatDate(assignment.dueDate)}</span> </p>
 
       <button className={styles.deleteButton} onClick={handleDeleteClick}>
         <TbTrash size={20} />

@@ -1,16 +1,18 @@
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
 
-import AssignmentInterface from "../../interfaces/assignments"
+// import AssignmentInterface from "../../interfaces/assignments";
+import { useAssignmentStore } from "../../store";
 
-interface Props {
-  assignmentList: AssignmentInterface[],
-  setAssignmentList: React.Dispatch<React.SetStateAction<AssignmentInterface[]>>
-}
+// interface Props {
+//   assignmentList: AssignmentInterface[],
+//   // setAssignmentList: React.Dispatch<React.SetStateAction<AssignmentInterface[]>>
+// }
 
-export function Assignments({ assignmentList, setAssignmentList }: Props) {
+export function Assignments() {
+  const { assignments } = useAssignmentStore();
   const completedNumber = () => {
-    return assignmentList.filter(value => value.completed).length
+    return assignments.filter(value => value.completed).length
   }
 
   return (
@@ -18,18 +20,18 @@ export function Assignments({ assignmentList, setAssignmentList }: Props) {
       <header className={styles.header}>
         <div>
           <p>Created Assignments</p>
-          <span>{assignmentList.length}</span>
+          <span>{assignments.length}</span>
         </div>
 
         <div>
           <p className={styles.textPurple}>Completed Assignments</p>
-          <span>{completedNumber()} of {assignmentList.length}</span>
+          <span>{completedNumber()} of {assignments.length}</span>
         </div>
       </header>
 
-      {assignmentList.map((assignment) =>(
+      {assignments.map((assignment) =>(
         <div className={styles.list}>
-          <Assignment assignment={assignment} assignmentList={assignmentList} setAssignmentList={setAssignmentList}/>
+          <Assignment id={assignment.id} name={assignment.name} completed={assignment.completed} dueDate={assignment.dueDate}/>
       </div>
       ))}
     </section>
