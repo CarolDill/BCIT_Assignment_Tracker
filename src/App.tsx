@@ -7,7 +7,6 @@ import { Assignments } from "./components/Assignments";
 function App() {
   const [selected, setSelected] = useState<Date | undefined>();
   
-  
   return (
     <>
       <Header selected={selected} setSelected={setSelected}/>
