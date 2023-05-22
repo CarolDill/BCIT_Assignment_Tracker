@@ -1,20 +1,14 @@
-// import React from "react";
-import {Dispatch, SetStateAction} from "react";
-import styles from "./header.module.css";
+import { Dispatch, SetStateAction, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { uppercase, capitalizeFirstLetter } from "../../helpers/stringHelpers";
-
-// import AssignmentInterface from "../../interfaces/assignments";
-
-import { useState } from "react";
-
 import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/dist/style.css';
 
+import { uppercase, capitalizeFirstLetter } from "../../helpers/stringHelpers";
 import { useAssignmentStore } from "../../store";
+
+import 'react-day-picker/dist/style.css';
+import styles from "./header.module.css";
+
 interface Props{
-  // assignmentName: string,
-  // setAssignmentName: Dispatch<SetStateAction<string>>,
   selected: Date | undefined,
   setSelected: Dispatch<SetStateAction<Date | undefined>>
 }

@@ -1,17 +1,12 @@
-import styles from "./assignment.module.css";
 import { TbTrash, TbCircleCheckFilled } from "react-icons/tb";
-import 'react-day-picker/dist/style.css';
 
 import AssignmentInterface from "../../interfaces/assignments";
 import daysDifference from "../../helpers/daysHelpers";
-
 import { useAssignmentStore } from "../../store";
 
-// interface Props{
-  // assignment: AssignmentInterface,
-  // assignmentList: AssignmentInterface[],
-  // setAssignmentList: React.Dispatch<React.SetStateAction<AssignmentInterface[]>>,
-// }
+import styles from "./assignment.module.css";
+import 'react-day-picker/dist/style.css';
+
 
 export function Assignment( assignment: AssignmentInterface) {
 
