@@ -53,7 +53,7 @@ export function Assignment( { assignment, assignmentList, setAssignmentList }: P
         </div>
       </button>
 
-      <p className={assignment.completed ? styles.textCompleted : ''}>{ assignment.name } <span className={daysDifference(assignment.dueDate) == 1 ? styles.dueTomorrow : styles.dueNDays}>{formatDate(assignment.dueDate)}</span> </p>
+      <p className={assignment.completed ? styles.textCompleted : ''} key={assignment.id}>{ assignment.name } <span className={daysDifference(assignment.dueDate) == 1 ? styles.dueTomorrow : styles.dueNDays}>{formatDate(assignment.dueDate)}</span> </p>
 
       <button className={styles.deleteButton} onClick={handleDeleteClick}>
         <TbTrash size={20} />
