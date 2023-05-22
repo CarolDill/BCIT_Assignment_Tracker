@@ -1,15 +1,11 @@
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
 
-interface Assignment{
-  id: number,
-  name: string,
-  completed: boolean
-}
+import AssignmentInterface from "../../interfaces/assignments"
 
 interface Props {
-  assignmentList: Assignment[],
-  setAssignmentList: React.Dispatch<React.SetStateAction<Assignment[]>>
+  assignmentList: AssignmentInterface[],
+  setAssignmentList: React.Dispatch<React.SetStateAction<AssignmentInterface[]>>
 }
 
 export function Assignments({ assignmentList, setAssignmentList }: Props) {

@@ -51,3 +51,15 @@ p.textCompleted {
 .none{
   display: none;
 }
+
+.dueNDays {
+  padding: 5px 10px;
+  border-radius: 15px;
+  background-color: #808080;
+}
+
+.dueTomorrow {
+  padding: 5px 10px;
+  border-radius: 15px;
+  background-color: red;
+}

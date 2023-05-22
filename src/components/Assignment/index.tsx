@@ -1,17 +1,15 @@
 import styles from "./assignment.module.css";
 import { TbTrash, TbCircleCheckFilled } from "react-icons/tb";
+// import React from 'react';
+import AssignmentInterface from "../../interfaces/assignments";
+import daysDifference from "../../helpers/daysHelpers";
 
-
-interface Assignment{
-  id: number,
-  name: string,
-  completed: boolean
-}
+import 'react-day-picker/dist/style.css';
 
 interface Props{
-  assignment: Assignment,
-  assignmentList: Assignment[],
-  setAssignmentList: React.Dispatch<React.SetStateAction<Assignment[]>>,
+  assignment: AssignmentInterface,
+  assignmentList: AssignmentInterface[],
+  setAssignmentList: React.Dispatch<React.SetStateAction<AssignmentInterface[]>>,
 }
 
 export function Assignment( { assignment, assignmentList, setAssignmentList }: Props) {
@@ -36,6 +34,17 @@ export function Assignment( { assignment, assignmentList, setAssignmentList }: P
     }))
   }
 
+  function formatDate(date:Date | undefined) {
+    if (date) {
+      const diff =  daysDifference(date);
+      if (diff == 1) {
+        return "Due: tomorrow"
+      } else {
+        return `Due: ${diff} days`
+      }
+    }
+  }
+
   return (
     <div className={styles.assignment}>
       <button className={styles.checkContainer} onClick={handleComplete}>
@@ -44,7 +53,7 @@ export function Assignment( { assignment, assignmentList, setAssignmentList }: P
         </div>
       </button>
 
-      <p className={assignment.completed ? styles.textCompleted : ''}>{ assignment.name }</p>
+      <p className={assignment.completed ? styles.textCompleted : ''}>{ assignment.name } <span className={daysDifference(assignment.dueDate) == 1 ? styles.dueTomorrow : styles.dueNDays}>{formatDate(assignment.dueDate)}</span> </p>
 
       <button className={styles.deleteButton} onClick={handleDeleteClick}>
         <TbTrash size={20} />
